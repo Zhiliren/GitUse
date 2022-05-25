@@ -233,3 +233,26 @@ git push origin --delete <分支名>
 注：删除本地分支不会影响到远程分支
 ```
 
+## Git报错原因
+
+## 1、提交项目到git远程仓库时执行命令：git add .
+
+现象：
+
+```
+git add . 出现以下现象
+
+warning: LF will be replaced by CRLF in src/App.vue.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in src/components/HelloWorld.vue.
+The file will have its original line endings in your working directory
+```
+
+解决：
+
+最简单的一种办法就是把`自动转换功能`关掉即可。
+
+```
+git config --global core.autocrlf false
+```
+
