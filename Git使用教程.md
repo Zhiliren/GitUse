@@ -233,13 +233,48 @@ git push origin --delete <分支名>
 注：删除本地分支不会影响到远程分支
 ```
 
+## 第四章 Git克隆命令
+
+**Git命令集之四——克隆命令**
+
+```
+1.git clone <url> <dicName>
+    这个命令是最基本的克隆命令，其可以从一个远程仓库中将Git仓库克隆岛本地，需要注意，第2个参数可以省略，如果省略，则在本地默认创建一个和远程仓库名相同的目录，不省略则在本地创建的目录名即是设置的dicName值。Git不只可以克隆远程仓库，也可以对本地的仓库进行克隆，但这并没有什么意义。
+
+2.git clone --local <url>
+    克隆本地仓库。
+
+3.git clone --quiet <url>
+    克隆过程中只对错误信息进行输出。
+
+4.git clone --progress <url>
+    克隆过程中报告进行状态。
+
+5.git clone --no-checkout <url>
+    克隆完成后，不对当前分支进行检出。
+
+6.git clone --origin<name> <url>
+    使用自定义的名称代替远程origin名。
+
+7.git clone --branch<name> <url>
+    克隆仓库后直接将指定的分支检出。
+
+8.git clone --template<path>
+    设置一个指定的模板进行克隆。
+
+9.git clone --config <key>=<value>
+    对新克隆的仓库应用指定的配置。
+```
+
+
+
 ## Git报错原因
 
 ## 1、提交项目到git远程仓库时执行命令：git add .
 
 现象：
 
-```
+```bash
 git add . 出现以下现象
 
 warning: LF will be replaced by CRLF in src/App.vue.
@@ -252,7 +287,31 @@ The file will have its original line endings in your working directory
 
 最简单的一种办法就是把`自动转换功能`关掉即可。
 
-```
+```bash
 git config --global core.autocrlf false
 ```
 
+## 2、git克隆代码库到本地指令：git clone url
+
+现象：
+
+```
+git clone url 出现以下现象
+
+Cloning into 'JavaScript-Learning-Example'...
+fatal: unable to access 'https://github.com/oinsd/JavaScript-Learning-Example.git/': OpenSSL SSL_read: Connection was aborted, errno 10053
+```
+
+解决：
+
+1.增加缓冲
+
+```bash
+git config http.postBuffer 524288000
+```
+
+2.更改网络认证设置
+
+```bash
+git config http.sslVerify "false"
+```
